@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="simple currency converter on the base of extern API">
+    <meta name="keywords" content="currency, converter, rate, exchange">
+    <meta name="author" content="Mateusz Polok">
+    <title>Currency Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+        integrity="sha256-WAgYcAck1C1/zEl5sBl5cfyhxtLgKGdpI3oKyJffVRI=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/backgroundImageContainer.css">
+    <link rel="stylesheet" href="./css/appWrapper.css">
+    <link rel="stylesheet" href="./css/calculatorHeader.css">
+    <link rel="stylesheet" href="./css/calculatorForm.css">
+    <script src="./js/script.js" defer></script>
+</head>
+
+<body>
+    <div class="appWrapper">
+        <h1 class="calculatorHeader">Currency Converter</h1>
+        <form class="calculatorForm">
+            <section class="calculatorForm__currencySection">
+                <select class="calculatorForm__select js-firstCurrencySelect" name="currency1">
+                    <option value="PLN" selected>PLN</option>
+                    <option value="EUR">EUR</option>
+                    <option value="USD">USD</option>
+                    <option value="GBP">GBP</option>
+                    <option value="CHF">CHF</option>
+                </select>
+                <input class="calculatorForm__input js-firstCurrencyValueInputElement" placeholder="enter value"
+                    value="0.00" type="number" step="0.01" min="0">
+            </section>
+            <section class="calculatorForm__currencySection">
+                <select class="calculatorForm__select js-secondCurrencySelect" name="currency2">
+                    <option value="PLN">PLN</option>
+                    <option value="EUR" selected>EUR</option>
+                    <option value="USD">USD</option>
+                    <option value="GBP">GBP</option>
+                    <option value="CHF">CHF</option>
+                </select>
+                <input class="calculatorForm__input js-secondCurrencyValueInputElement" placeholder="enter value"
+                    value="0.00" type="number" step="0.01" min="0">
+            </section>
+            <button class="calculatorForm__calculateButton js-calculateButton" type="button">Check exchange rate and
+                date</button>
+            <p class="calculatorForm__Message js-message"></p>
+        </form>
+    </div>
+
+    <div class="backgroundImageContainer"></div>
+</body>
+
+</html>

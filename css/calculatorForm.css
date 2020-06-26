@@ -1,0 +1,97 @@
+.calculatorForm__currencySection {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin: 20px auto;
+}
+
+.calculatorForm__select {
+    font-size: 24px;
+    box-shadow: 3px -4px 5px 2px rgba(50, 50, 50, 0.75);
+    padding: 10px;
+    background-color: rgba(199, 194, 194, 0.801);
+    flex:150px 0 3;
+    margin:10px;
+}
+
+.calculatorForm__select:focus {
+    background-color: white;
+}
+
+.calculatorForm__input {
+    width:100%;
+    font-size: 24px;
+    padding: 10px;
+    box-shadow: 3px -4px 5px 2px rgba(50, 50, 50, 0.75);
+    margin:10px;
+    background-color: rgba(199, 194, 194, 0.801);
+    border: none;
+    flex:200px 0 1;
+}
+
+.calculatorForm__input:focus {
+    background-color: white;
+}
+
+.calculatorForm__Message {
+    height:80px;
+    width:400px;
+    font-size: 24px;
+    margin: 30px auto;
+    text-align: center;
+    opacity: 0;
+    color: transparent;
+    transition: opacity 0.2s linear;
+    line-height: 1;
+}
+
+.calculatorForm__Message--warning {
+    opacity: 1;
+    color: red;
+}
+
+.calculatorForm__Message--info {
+    opacity: 1;
+    color: rgba(157, 233, 145, 0.76);
+}
+
+.calculatorForm__calculateButton {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+    box-shadow: 3px -4px 5px 2px rgba(50, 50, 50, 0.75);
+    cursor: pointer;
+    background-color: rgba(199, 194, 194, 0.801);
+    transition: background-color 0.15s linear;
+}
+
+.calculatorForm__calculateButton:hover, .calculatorForm__calculateButton:focus {
+    background-color: white;
+}
+
+@media (max-width: 500px){
+    .calculatorForm__select {
+        font-size: 20px;
+        padding: 5px;
+    }
+    
+    .calculatorForm__input {
+        font-size: 20px;
+        padding: 5px;
+    }
+    
+    .calculatorForm__calculateButton {
+        font-size: 20px;
+        padding: 5px;
+    }
+
+    .calculatorForm__Message {
+        height:80px;
+        width:200px;
+        font-size: 20px;
+        margin: 20px auto;
+    }
+}
