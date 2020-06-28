@@ -5,6 +5,7 @@
     font-size: 32px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    font-family: "Itim", cursive;
 }
 
 @media (max-width: 500px){
