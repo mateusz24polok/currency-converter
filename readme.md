@@ -12,6 +12,8 @@ https://mateusz24polok.github.io/currency-converter/
 3. In second line select currency in which you want to get money
 4. By clicking "Check exchange rate and date" button You can check exactly details of exchange conversion
 
+![SampleGIF](images/CurrencyConverter_Sample.gif)
+
 # Technologies
 ## Technologies used in project:
 - Semantic HTML
@@ -25,7 +27,7 @@ https://mateusz24polok.github.io/currency-converter/
 - Extern foreign exchange rates API with currency conversion (https://exchangeratesapi.io/)
 - Protection against entering a negative currency value
 
-![ProtectionGIF](images/CurrencyConverter_HandleNegativeValue.gif)
+![ProtectionGIF](images/CurrencyConverter_HandleNegativeValue_v2.gif)
 
 # Author and contact
 - author: Mateusz Polok
