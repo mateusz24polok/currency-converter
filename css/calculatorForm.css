@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    flex-wrap: nowrap;
     margin: 20px auto;
 }
 
@@ -11,8 +10,9 @@
     box-shadow: 3px -4px 5px 2px rgba(50, 50, 50, 0.75);
     padding: 10px;
     background-color: rgba(199, 194, 194, 0.801);
-    flex:150px 0 3;
+    flex:0 3 150px;
     margin:10px;
+    border-radius: 10px;
 }
 
 .calculatorForm__select:focus {
@@ -27,7 +27,8 @@
     margin:10px;
     background-color: rgba(199, 194, 194, 0.801);
     border: none;
-    flex:200px 0 1;
+    flex:0 1 200px;
+    border-radius: 10px;
 }
 
 .calculatorForm__input:focus {
@@ -66,6 +67,7 @@
     cursor: pointer;
     background-color: rgba(199, 194, 194, 0.801);
     transition: background-color 0.15s linear;
+    border-radius: 10px;
 }
 
 .calculatorForm__calculateButton:hover, .calculatorForm__calculateButton:focus {
