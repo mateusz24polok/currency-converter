@@ -8,7 +8,6 @@ const exchangeDetailsMessageElement = document.querySelector(".js-message");
 const getExchangeData = async (basedCurrency, exchangedCurrency) => {
     const exchangeDataResponse = await fetch(`https://api.exchangeratesapi.io/latest?base=${basedCurrency}`);
     const exchangeData = await exchangeDataResponse.json();
-    //handle API EUR-EUR error
     if (basedCurrency === "EUR" && exchangedCurrency === "EUR") {
         return {
             exchangeRate: 1,
@@ -33,24 +32,15 @@ const handleNegativeValue = () => {
     }, 1500)
 };
 
-const updateFirstCurrencyValue = async () => {
-    //Reset old message text//
+const updateCurrencyValue = async (updatedCurrencyValueElement, basedCurrencyValueElement) => {
     exchangeDetailsMessageElement.className = "calculatorForm__Message";
     try{
         const exchangeData = await getExchangeData(firstCurrencySelectElement.value, secondCurrencySelectElement.value);
-        firstCurrencyValueInputElement.value = (secondCurrencyValueInputElement.value * exchangeData.exchangeRate).toFixed(2);
+        if(updatedCurrencyValueElement.value === firstCurrencyValueInputElement.value){
+        firstCurrencyValueInputElement.value = (basedCurrencyValueElement.value * 1/exchangeData.exchangeRate).toFixed(2);
+    }else{
+        secondCurrencyValueInputElement.value = (basedCurrencyValueElement.value * exchangeData.exchangeRate).toFixed(2);
     }
-    catch{
-        console.log("Error")
-    }
-};
-
-const updateSecondCurrencyValue = async () => {
-    //Reset old message text//
-    exchangeDetailsMessageElement.className = "calculatorForm__Message";
-    try{
-        const exchangeData = await getExchangeData(firstCurrencySelectElement.value, secondCurrencySelectElement.value);
-        secondCurrencyValueInputElement.value = (firstCurrencyValueInputElement.value * exchangeData.exchangeRate).toFixed(2);
     }
     catch{
         console.log("Error")
@@ -65,20 +55,20 @@ const showDetailsMessage = () => {
         }).catch(err => console.log(err))
 };
 
-const handleCurrencyValueInputChange = (currencyValueInputElement, inputChangeCallback) => {
+const handleCurrencyValueInputChange = (currencyValueInputElement, updatedCurrencyValueElement, basedCurrencyValueElement) => {
     if (currencyValueInputElement.value >= 0) {
-        inputChangeCallback();
+        updateCurrencyValue(updatedCurrencyValueElement,basedCurrencyValueElement);
     } else if (currencyValueInputElement.value < 0) {
         handleNegativeValue();
     }
 };
 
-firstCurrencySelectElement.addEventListener("change", updateSecondCurrencyValue)
+firstCurrencySelectElement.addEventListener("change", updateCurrencyValue.bind(null, secondCurrencyValueInputElement, firstCurrencyValueInputElement))
 
-secondCurrencySelectElement.addEventListener("change", updateSecondCurrencyValue)
+secondCurrencySelectElement.addEventListener("change", updateCurrencyValue.bind(null, secondCurrencyValueInputElement, firstCurrencyValueInputElement))
 
-firstCurrencyValueInputElement.addEventListener("input", handleCurrencyValueInputChange.bind(null, firstCurrencyValueInputElement, updateSecondCurrencyValue))
+firstCurrencyValueInputElement.addEventListener("input", handleCurrencyValueInputChange.bind(null, firstCurrencyValueInputElement, secondCurrencyValueInputElement, firstCurrencyValueInputElement))
 
-secondCurrencyValueInputElement.addEventListener("input", handleCurrencyValueInputChange.bind(null, secondCurrencyValueInputElement, updateFirstCurrencyValue))
+secondCurrencyValueInputElement.addEventListener("input", handleCurrencyValueInputChange.bind(null, secondCurrencyValueInputElement, firstCurrencyValueInputElement, secondCurrencyValueInputElement))
 
 calculateButtonElement.addEventListener("click", showDetailsMessage)
