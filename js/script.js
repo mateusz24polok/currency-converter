@@ -34,30 +34,33 @@ const handleNegativeValue = () => {
 
 const updateCurrencyValue = async (updatedCurrencyValueElement, basedCurrencyValueElement) => {
     exchangeDetailsMessageElement.className = "calculatorForm__Message";
-    try{
+    try {
         const exchangeData = await getExchangeData(firstCurrencySelectElement.value, secondCurrencySelectElement.value);
-        if(updatedCurrencyValueElement.value === firstCurrencyValueInputElement.value){
-        firstCurrencyValueInputElement.value = (basedCurrencyValueElement.value * 1/exchangeData.exchangeRate).toFixed(2);
-    }else{
-        secondCurrencyValueInputElement.value = (basedCurrencyValueElement.value * exchangeData.exchangeRate).toFixed(2);
-    }
+        if (updatedCurrencyValueElement.value === firstCurrencyValueInputElement.value) {
+            firstCurrencyValueInputElement.value = (basedCurrencyValueElement.value * 1 / exchangeData.exchangeRate).toFixed(2);
+        } else {
+            secondCurrencyValueInputElement.value = (basedCurrencyValueElement.value * exchangeData.exchangeRate).toFixed(2);
+        }
     }
     catch{
         console.log("Error")
     }
 };
 
-const showDetailsMessage = () => {
+const showDetailsMessage = async () => {
     exchangeDetailsMessageElement.classList.add("calculatorForm__Message--info");
-    getExchangeData(firstCurrencySelectElement.value, secondCurrencySelectElement.value)
-        .then(exchangeData => {
-            exchangeDetailsMessageElement.textContent = `Your calculation is current for ${exchangeData.exchangeDate} and your exchange rate is ${exchangeData.exchangeRate.toFixed(2)}`;
-        }).catch(err => console.log(err))
+    try {
+        const exchangeData = await getExchangeData(firstCurrencySelectElement.value, secondCurrencySelectElement.value);
+        exchangeDetailsMessageElement.textContent = `Your calculation is current for ${exchangeData.exchangeDate} and your exchange rate is ${exchangeData.exchangeRate.toFixed(2)}`;
+    }
+    catch{
+        console.log("Error")
+    }
 };
 
 const handleCurrencyValueInputChange = (currencyValueInputElement, updatedCurrencyValueElement, basedCurrencyValueElement) => {
     if (currencyValueInputElement.value >= 0) {
-        updateCurrencyValue(updatedCurrencyValueElement,basedCurrencyValueElement);
+        updateCurrencyValue(updatedCurrencyValueElement, basedCurrencyValueElement);
     } else if (currencyValueInputElement.value < 0) {
         handleNegativeValue();
     }
